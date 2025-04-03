@@ -20,3 +20,8 @@ ALTER TABLE person1
 
 ALTER TABLE person1
     ALTER COLUMN age DROP NOT NULL;
+
+ALTER TABLE person1
+    ADD constraint unique_person1_age UNIQUE(age);
+
+TRUNCATE TABLE students
