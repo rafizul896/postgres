@@ -48,4 +48,79 @@ SELECT * FROM students;
 
 SELECT email as "Student Email", age FROM students;
 
-SELECT * FROM students ORDER BY age DESC;
+SELECT * FROM students ORDER BY age ASC;
+
+SELECT DISTINCT blood_group FROM students ORDER BY blood_group ASC;
+
+-- ----------------------------------------
+
+SELECT * FROM students
+    WHERE grade = 'A' AND course = 'Engineering';
+
+SELECT * FROM students
+    WHERE (country = 'UK' OR country = 'USA') AND age = 20;
+
+SELECT * FROM students
+    WHERE age >= 20 AND course = 'Mathematics' ORDER BY age ASC
+
+SELECT * FROM students
+    WHERE country <> 'UK' AND country <> 'USA';
+
+-- ---------------------------------------------------------
+-- scalar
+SELECT upper(first_name) ,* from students;
+
+SELECT length(email) FROM students;
+
+SELECT concat(first_name,' ',last_name) as "Full Name" from students;
+
+-- aggregate ----
+
+SELECT avg(age) FROM students;
+
+SELECT sum(age) FROM students;
+
+SELECT count(*) FROM students;
+
+SELECT length(first_name) FROM students;
+
+-- Logical Negation NOT, understanding NULL and the Null-Coalescing Operator in PostgreSQL
+
+SELECT * FROM students
+    WHERE NOT country = 'USA'
+
+SELECT * from students
+    WHERE email IS NOT NULL
+
+SELECT first_name, COALESCE(email,'Email is not provided') as "Email" FROM students;
+
+----- Exploring IN, BETWEEN, LIKE, and ILIKE Operators in PostgreSQL. --
+
+-- SELECT * FROM students WHERE country = 'USA' OR country = 'UK' OR country = 'Canada';
+
+SELECT * FROM students 
+    WHERE country NOT IN('USA','UK','Canada');
+
+SELECT age FROM students
+    WHERE age BETWEEN 19 and 23;
+
+SELECT * FROM students
+    WHERE first_name LIKE '__a_%';
+
+SELECT * from students
+    WHERE first_name ILIKE 'a%'
+
+-- ---Pagination with Limit Offset and Data Deletion in PostgreSQL.
+
+SELECT * FROM students LIMIT 5 OFFSET 2;
+SELECT * FROM students LIMIT 5 OFFSET 5 * 1;
+
+SELECT * from students;
+
+DELETE from students
+    WHERE grade = 'C';
+
+UPDATE students
+    set email = 'default@gmail.com'
+    WHERE student_id = 113;
+
