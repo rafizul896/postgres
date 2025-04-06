@@ -21,6 +21,9 @@ INSERT INTO employees VALUES
 SELECT * FROM employees;
 SELECT * FROM departments;
 
+DROP Table employees;
+DROP Table departments;
+
 -- cross join
 SELECT * FROM departments
     CROSS JOIN employees;
